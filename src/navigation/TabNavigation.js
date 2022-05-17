@@ -20,23 +20,7 @@ class TabNavigation extends Component{
     return (
         <NavigationContainer>
          <Tab.Navigator 
-            screenOptions = {{ 
-              tabBarShowLabel: false,
-              tabBarStyle: {
-                position: 'absolute',
-                bottom: 10,
-                left: 20,
-                right: 20,
-                elevation: 0,
-                backgroundColor: constants.color_1,
-                borderRadius: 15,
-                height: 55,
-                shadowColor: '#000000',
-                shadowOffset: {width: 0, height: 10},
-                shadowOpacity: 0.25,
-                shadowRadius: 3.5
-              }
-              }}>
+            screenOptions = {{ tabBarShowLabel: false, tabBarStyle: {} }}>
             <Tab.Screen 
                 name="Characters" 
                 children={() => <Characters />} 
