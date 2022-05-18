@@ -20,7 +20,7 @@ class TabNavigation extends Component{
     return (
         <NavigationContainer>
          <Tab.Navigator 
-            screenOptions = {{ tabBarShowLabel: false, tabBarStyle: {} }}>
+            screenOptions = {{ tabBarShowLabel: false, tabBarStyle: {}, headerShown: false }}>
             <Tab.Screen 
                 name="Characters" 
                 children={() => <Characters />} 

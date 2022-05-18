@@ -1,96 +1,90 @@
-import React, { Component } from "react";
-import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, FlatList, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Card from "../components/Card";
 import Loader from "../components/Loader";
-import { Dimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
+import CustomHeader from '../components/CustomHeader';
+import Pagination from "../components/Pagination";
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+export default function Characters() {
+    const insets = useSafeAreaInsets();
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [pages, setPages] = useState(0);
+    const [page, setPage] = useState(1);
+    const [totalCharacters, setTotalCharacters] = useState(0);
+    const window = useWindowDimensions();
 
-class Characters extends Component {
-    constructor(props) {
-        super(props)
-        this.state= {
-            data: [],
-            loading: true,
-            next: "",
-            pages: 0,
-            totalCharacters: 0,
-            prev: ""
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("https://rickandmortyapi.com/api/character");
+            const data =  await response.json();
+            await Promise.all([
+                setData(data.results),
+                setLoading(false),
+                setPages(data.info.pages),
+                setTotalCharacters(data.info.count)
+            ])
+        }
+        
+        fetchData()
+        .catch(err => console.log(err))
+    }, [])
+    
+
+    const changePage = (page, number) => {
+        try {
+            if (page === '' || number === '') {
+                return
+            }
+
+            const pageInt = parseInt(page);
+            const numberInt = parseInt(number);
+
+            if (typeof pageInt !== 'number' || typeof numberInt !== 'number') {
+                return
+            }
+            
+            setLoading(true)
+            fetch(`https://rickandmortyapi.com/api/character?page=${pageInt+numberInt}`)
+            .then((response) => response.json())
+            .then((data) => {
+                Promise.all([
+                    setData(data.results),
+                    setPage(pageInt+numberInt),
+                    setLoading(false)
+                ])
+            })
+            .catch((err) => console.log(err))
+        } catch (err) {
+            console.log(err)
+            return
         }
     }
 
-    componentDidMount() {
-        fetch("https://rickandmortyapi.com/api/character")
-            .then((response) => response.json())
-            .then((data) => this.setState({ 
-                data: data.results, 
-                loading: false, 
-                next: data.info.next,
-                pages: data.info.pages,
-                totalCharacters: data.info.totalCharacters
-             }))
-            .then(() => console.log(this.state.data))
-            .catch((err) => console.log(err))
-    }
-
-    nextPage() {
-        this.setState({ loading: true }, 
-        () => fetch(this.state.next)
-            .then((response) => response.json())
-            .then((data) => this.setState({
-                data: data.results, 
-                loading: false, 
-                next: data.info.next,
-                prev: data.info.prev,
-            }))
-            .catch((err) => console.log(err)))
-    }
-
-    prevPage() {
-        this.setState({ loading: true }, 
-        () => fetch(this.state.prev)
-            .then((response) => response.json())
-            .then((data) => this.setState({
-                data: data.results, 
-                loading: false, 
-                next: data.info.next,
-                prev: data.info.prev,
-            }))
-            .catch((err) => console.log(err)))
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                {
-                    this.state.loading ? 
-                    <Loader/> :
-                    <View style={styles.container}>
-                        <View style={styles.pagination}>
-                            {
-                                this.state.prev ?
-                                <TouchableOpacity onPress={() => this.prevPage()}>
-                                    <Text>Prev Page</Text>
-                                </TouchableOpacity> :
-                                <></>
-                            }
-                            <TouchableOpacity onPress={() => this.nextPage()}>
-                                <Text>Next Page</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.card}>
-                            <FlatList
-                                data={this.state.data}
-                                keyExtractor={(item) => item.id.toString()}
-                                renderItem={({item}) =>  <Card character={ item }/>}
-                            />
-                        </View>
-                    </View> 
-                }
-            </View>
-        )
-    }
+    return (
+        <View style={[styles.container, {width: window.width, paddingTop: insets.top,
+            paddingBottom: insets.bottom,}]}>
+            {
+                loading ? 
+                <Loader/> :
+                <View style={[styles.container, {width: window.width}]}>
+                    <CustomHeader />
+                    <Pagination page={page} changePage={(page, number) => changePage(page, number)} pages={pages}/>
+                    <View style={[styles.card, {width: window.width}]}>
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
+                            data={data}
+                            keyExtractor={(item) => item.id.toString()}
+                            renderItem={({item}) =>  <Card character={item}/>}
+                        />
+                    </View>
+                </View> 
+            }
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
@@ -98,18 +92,15 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      width: windowWidth
     },
     card: {
         flex: 1,
-        width: windowWidth,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     pagination: {
-        height: 65,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     }
-  })
-
-export default Characters;
+});

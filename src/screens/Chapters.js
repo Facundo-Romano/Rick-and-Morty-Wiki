@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-class Chapters extends Component{
-  render() {
-    return (
-      <View>
-          <Text>Locations</Text>
-      </View>
-    )
-  }
-}
-
-export default Chapters;
+export default function Chapters() {
+  const insets = useSafeAreaInsets();
+  return (
+    <View style={{paddingTop: insets.top,
+      paddingBottom: insets.bottom}}>
+        <Text>Chapters</Text>
+    </View>
+  )
+};

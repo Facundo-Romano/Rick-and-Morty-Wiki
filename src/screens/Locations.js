@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-class Locations extends Component{
-  render() {
-    return (
-      <View>
-          <Text>Locations</Text>
-      </View>
-    )
-  }
-}
-
-export default Locations;
+export default function Locations() {
+  const insets = useSafeAreaInsets();
+  return (
+    <View style={{paddingTop: insets.top,
+      paddingBottom: insets.bottom}}>
+        <Text>Locations</Text>
+    </View>
+  )
+};
