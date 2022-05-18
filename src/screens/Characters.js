@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { View, FlatList, StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Card from "../components/Card";
 import Loader from "../components/Loader";
 import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Pagination from "../components/Pagination";
+import Card from '../components/Card';
+import constants from "../constants";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Characters() {
-    const insets = useSafeAreaInsets();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalCharacters, setTotalCharacters] = useState(0);
     const window = useWindowDimensions();
+    const darkTheme = useTheme();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,13 +62,12 @@ export default function Characters() {
     }
 
     return (
-        <View style={[styles.container, {width: window.width, paddingTop: insets.top,
-            paddingBottom: insets.bottom,}]}>
+        <View style={[styles.container, {width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
             {
                 loading ? 
                 <Loader/> :
                 <View style={[styles.container, {width: window.width}]}>
-                    <CustomHeader />
+                    <CustomHeader/>
                     <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
                     <View style={[styles.card, {width: window.width}]}>
                         <FlatList

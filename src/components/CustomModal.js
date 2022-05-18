@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import ModalPicker from './ModalPicker';
+import constants from '../constants';
+import { useTheme } from '../context/ThemeContext';
 
 export default function CustomModal({ page, changePage, pages }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const darkTheme = useTheme();
 
     return (
-       <View style={styles.container}>
+       <View style={[styles.container]}>
            <TouchableOpacity style={styles.button} onPress={() => {setIsModalVisible(true)}}>
-                <Text style={styles.text}>Page: </Text>
-                <Text style={styles.text}>{page}</Text>
+                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_4}]}>
+                    Page   
+                </Text>
+                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_4}]}>
+                    {` ${page}`}
+                </Text>
            </TouchableOpacity>
            <Modal
                 transparent={true}
@@ -55,6 +62,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
         textTransform: 'uppercase',
         textAlign: 'center',
-        color: '#000'
     }
 });
