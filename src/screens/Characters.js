@@ -12,7 +12,7 @@ export default function Characters() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
-    const [page, setPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [totalCharacters, setTotalCharacters] = useState(0);
     const window = useWindowDimensions();
 
@@ -33,26 +33,23 @@ export default function Characters() {
     }, [])
     
 
-    const changePage = (page, number) => {
+    const changePage = (page) => {
         try {
-            if (page === '' || number === '') {
+            if (page === '') {
                 return
             }
 
-            const pageInt = parseInt(page);
-            const numberInt = parseInt(number);
-
-            if (typeof pageInt !== 'number' || typeof numberInt !== 'number') {
+            if (typeof parseInt(page) !== 'number') {
                 return
             }
             
             setLoading(true)
-            fetch(`https://rickandmortyapi.com/api/character?page=${pageInt+numberInt}`)
+            fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
             .then((response) => response.json())
             .then((data) => {
                 Promise.all([
                     setData(data.results),
-                    setPage(pageInt+numberInt),
+                    setCurrentPage(page),
                     setLoading(false)
                 ])
             })
@@ -71,7 +68,7 @@ export default function Characters() {
                 <Loader/> :
                 <View style={[styles.container, {width: window.width}]}>
                     <CustomHeader />
-                    <Pagination page={page} changePage={(page, number) => changePage(page, number)} pages={pages}/>
+                    <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
                     <View style={[styles.card, {width: window.width}]}>
                         <FlatList
                             showsVerticalScrollIndicator={false}

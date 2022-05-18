@@ -9,16 +9,16 @@ export default function Pagination({ page, changePage, pages }) {
         <View style={[styles.container, {height: window.height/12, width: window.width}]}>
                         {
                             page > 1 ?
-                            <TouchableOpacity style={styles.button} onPress={() => changePage(page, -1)}>
+                            <TouchableOpacity style={styles.button} onPress={() => changePage(page-1)}>
                                 <Text style={styles.text}>Prev Page</Text>
                             </TouchableOpacity> :
                             <></>
                         }
-                        <TouchableOpacity  style={styles.button} onPress={() => changePage(page, 1)}>
+                        <TouchableOpacity  style={styles.button} onPress={() => changePage(page+1)}>
                             <Text style={styles.text}>Next Page</Text>
                         </TouchableOpacity>
                         <View style={styles.smallContainer}>
-                            <CustomModal page={page} changePage={(number, diff) => changePage(number, diff)} pages={pages}/>
+                            <CustomModal page={page} changePage={(number) => changePage(number)} pages={pages}/>
                         </View>
                     </View>
     )

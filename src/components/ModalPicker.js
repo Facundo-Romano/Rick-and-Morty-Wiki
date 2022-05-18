@@ -14,7 +14,7 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
                             return ( 
                                 <TouchableOpacity style={styles.option} onPress={() => {
                                     modalVisibility(false)
-                                    changePage(item, 0)
+                                    changePage(item)
                                     }
                                     } key={index}
                                     >

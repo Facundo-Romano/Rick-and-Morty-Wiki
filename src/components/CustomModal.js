@@ -31,7 +31,7 @@ export default function CustomModal({ page, changePage, pages }) {
                 children={ 
                     <ModalPicker 
                     modalVisibility={(boolean) => setIsModalVisible(boolean)} 
-                    changePage={(number, diff) => changePage(number, diff)}
+                    changePage={(number) => changePage(number)}
                     pages={pages}/>}
                 />
        </View>  
