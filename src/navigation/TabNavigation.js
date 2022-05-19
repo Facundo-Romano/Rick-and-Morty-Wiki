@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,19 +8,20 @@ import Characters from '../screens/Characters';
 import Locations from '../screens/Locations';
 import Chapters from '../screens/Chapters';
 import constants from '../css/constants';
+import { useTheme } from '../context/ThemeContext';
 
 const Tab = createBottomTabNavigator();
 
-class TabNavigation extends Component{
-  constructor(props) {
-    super(props)
-  }
+export default function TabNavigation() {
+    const darkTheme = useTheme();
 
-  render() {
     return (
         <NavigationContainer>
          <Tab.Navigator 
-            screenOptions = {{ tabBarShowLabel: false, tabBarStyle: {}, headerShown: false }}>
+            screenOptions = {{ 
+              tabBarShowLabel: false, 
+              tabBarStyle: {backgroundColor: darkTheme ? constants.color_0 : constants.color_5}, 
+              headerShown: false }}>
             <Tab.Screen 
                 name="Characters" 
                 children={() => <Characters />} 
@@ -31,7 +32,10 @@ class TabNavigation extends Component{
                         style={{
                           height: 35, 
                           width: 35, 
-                          tintColor: focused ? constants.color_3 : constants.color_4 }}
+                          tintColor: darkTheme ? 
+                                    focused ? constants.color_3 : constants.color_4 :
+                                    focused ? constants.color_3 : constants.color_0
+                        }}
                         source={require('../../assets/rickIcon.png')}
                         resizeMode='contain'
                         />
@@ -45,7 +49,11 @@ class TabNavigation extends Component{
                           <Ionicons 
                             name="location-sharp" 
                             size={30}  
-                            style={{color: focused ? constants.color_3 : constants.color_4}}/> 
+                            style={{
+                              color: darkTheme ? 
+                              focused ? constants.color_3 : constants.color_4 :
+                              focused ? constants.color_3 : constants.color_0
+                            }}/> 
                         }}
             />
             <Tab.Screen 
@@ -55,30 +63,21 @@ class TabNavigation extends Component{
                           <MaterialIcons 
                             name="local-movies" 
                             size={30}
-                            style={{color: focused ? constants.color_3 : constants.color_4}} /> 
+                            style={{
+                              color: darkTheme ? 
+                              focused ? constants.color_3 : constants.color_4 :
+                              focused ? constants.color_3 : constants.color_0
+                            }}/> 
                         }}
             />
          </Tab.Navigator>
        </NavigationContainer>
       )
-  }
-}
+};
 
 const styles = StyleSheet.create({
-  navigaton: {
-    position: 'absolute',
-    bottom: 25,
-    left: 20,
-    right: 20,
-    elevation: 0,
-    backgroundColor: constants.color_0,
-    borderRadius: 15,
-    height: 45
-  },
   icon: {
     alignItems: 'center',
     justifyContent: 'center'
   }
 });
-
-export default TabNavigation;

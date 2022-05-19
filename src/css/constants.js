@@ -4,6 +4,7 @@ const constants = {
     color_2: '#6D7984',
     color_3: '#53DD81',
     color_4: '#E6E8E6',
+    color_5: '#FFFBE7'
 };
 
 export default constants;
