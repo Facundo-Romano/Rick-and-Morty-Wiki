@@ -12,12 +12,12 @@ export default function SwitchStyles() {
                 darkTheme ? 
                 <Image 
                     style={{width: 30, height: 30, backgroundColor: 'white', borderRadius: 15}} 
-                    source={require('../../assets/moon.png')}  
+                    source={require('../../assets/custom/moon.png')}  
                     resizeMode="cover"  
                     /> :
                 <Image
                     style={{width: 30, height: 30, backgroundColor: 'black', borderRadius: 15}} 
-                    source={require('../../assets/sun.png')}  
+                    source={require('../../assets/custom/sun.png')}  
                     resizeMode="cover" />
             }
         </TouchableOpacity>

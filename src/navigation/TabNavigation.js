@@ -20,7 +20,11 @@ export default function TabNavigation() {
          <Tab.Navigator 
             screenOptions = {{ 
               tabBarShowLabel: false, 
-              tabBarStyle: {backgroundColor: darkTheme ? constants.color_0 : constants.color_5}, 
+              tabBarStyle: {
+                  backgroundColor: darkTheme ? constants.color_0 : constants.color_5,
+                  borderTopWidth:1,
+                  borderTopColor: darkTheme ? constants.color_0 : constants.color_5
+                }, 
               headerShown: false }}>
             <Tab.Screen 
                 name="Characters" 
@@ -36,7 +40,7 @@ export default function TabNavigation() {
                                     focused ? constants.color_3 : constants.color_4 :
                                     focused ? constants.color_3 : constants.color_0
                         }}
-                        source={require('../../assets/rickIcon.png')}
+                        source={require('../../assets/custom/rickIcon.png')}
                         resizeMode='contain'
                         />
                     </View>

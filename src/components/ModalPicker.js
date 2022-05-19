@@ -12,7 +12,8 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
         <TouchableOpacity style={styles.modal} onPress={() => modalVisibility(false)}>
             <View style={[styles.container, 
                         {width: window.width/5, 
-                        height: window.height*0.9, 
+                        maxHeight: window.height*0.75,
+                        marginTop: window.height/7,
                         backgroundColor: darkTheme ? constants.color_0 : constants.color_4
                     }]}>
                 <ScrollView 
@@ -21,7 +22,7 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
                     {
                         pagesArr.map((item, index) => {
                             return (
-                                <TouchableOpacity style={[styles.option, {marginLeft: window.width/20}]} onPress={() => {
+                                <TouchableOpacity style={styles.option} onPress={() => {
                                     modalVisibility(false)
                                     changePage(item)
                                     }
@@ -49,16 +50,19 @@ const styles = StyleSheet.create({
     modal: {
         flex: 1,
         alignItems: 'flex-end',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
     },
     container: {
-        borderRadius: 10
+        borderRadius: 10,
+        maxWidth: 70,
+        minWidth: 45
     },
     option: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        height: 40
+        height: 40,
+        marginLeft: 20
     },
     circle: {
         width: 7,

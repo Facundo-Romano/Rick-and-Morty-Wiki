@@ -40,6 +40,7 @@ export default function CustomModal({ page, changePage, pages }) {
                     modalVisibility={(boolean) => setIsModalVisible(boolean)} 
                     changePage={(number) => changePage(number)}
                     pages={pages}/>}
+                /* style={{justifyContent: 'flex-start'} }*/
                 />
        </View>  
     )

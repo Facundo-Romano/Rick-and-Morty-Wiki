@@ -4,18 +4,18 @@ import { useWindowDimensions } from 'react-native';
 import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 
-export default function Card({ character }) {
+export default function CharacterCard({ character }) {
   const darkTheme = useTheme();
   const window = useWindowDimensions();
 
   return (
     <View style={[
         styles.bigContainer, 
-        { width: window.width - window.width/6,
+        { width: window.width - window.width/7,
           minhHeight: window.height/5, 
-          backgroundColor: darkTheme ? constants.color_1 : constants.color_2}]}>
+          backgroundColor: darkTheme ? constants.color_1 : constants.color_5}]}>
       <Image 
-        style={{width: window.height/6, height: window.height/6}} 
+        style={{width: window.height/6, minHeight: window.height/6, height: '100%'}} 
         source={{uri: character.image}}  
         resizeMode="cover"/>
       <View style={ styles.container }>
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   bigContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    maxWidth: 450,
     marginVertical: 16,
     borderRadius: 10,
     overflow: 'hidden',
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '700',
     width: '100%',
     marginVertical: 12
   },

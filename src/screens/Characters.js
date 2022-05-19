@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, FlatList, StyleSheet, ScrollView, Animated, Text } from 'react-native';
+import { View, StyleSheet, Animated } from 'react-native';
 import Loader from "../components/Loader";
 import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Pagination from "../components/Pagination";
-import Card from '../components/Card';
+import CharacterCard from '../components/CharacterCard';
 import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
@@ -109,7 +109,7 @@ export default function Characters() {
                                     {
                                         data.map((item, idx) => {
                                             return (
-                                                <Card character={item} key={idx} />
+                                                <CharacterCard character={item} key={idx} />
                                             )
                                         })
                                     }

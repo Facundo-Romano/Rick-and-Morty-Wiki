@@ -13,7 +13,7 @@ export default function CustomHeader() {
     return (
         <View style={[styles.container,{backgroundColor: darkTheme? constants.color_4 : constants.color_0}]}>
             <TouchableOpacity onPress={() => navigation.navigate('Characters')}>
-                <Image style={styles.img} source={require('../../assets/portal.png')}  resizeMode="cover"/>
+                <Image style={styles.img} source={require('../../assets/custom/portal.png')}  resizeMode="cover"/>
             </TouchableOpacity>
             <View style={[styles.smallContainer, {width: window.width - 91}]}>   
                 <Text style={[styles.title, { color: darkTheme ? constants.color_0 : constants.color_4 }]}>
