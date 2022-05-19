@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Characters from '../screens/Characters';
 import Locations from '../screens/Locations';
 import Chapters from '../screens/Chapters';
-import constants from '../constants';
+import constants from '../css/constants';
 
 const Tab = createBottomTabNavigator();
 

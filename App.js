@@ -1,5 +1,5 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import constants from './src/constants';
+import constants from './src/css/constants';
 import TabNavigation from "./src/navigation/TabNavigation";
 import { ThemeProvider } from './src/context/ThemeContext'
 

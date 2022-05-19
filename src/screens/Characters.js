@@ -5,7 +5,7 @@ import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
 import Pagination from "../components/Pagination";
 import Card from '../components/Card';
-import constants from "../constants";
+import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Characters() {

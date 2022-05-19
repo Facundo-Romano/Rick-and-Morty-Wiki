@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import ModalPicker from './ModalPicker';
-import constants from '../constants';
+import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 
 export default function CustomModal({ page, changePage, pages }) {

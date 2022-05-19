@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import constants from '../constants';
-import SwitchStyles from './switchStyles/SwitchStyles';
+import constants from '../css/constants';
+import SwitchStyles from './SwitchStyles';
 import { useTheme } from '../context/ThemeContext';
 
 export default function CustomHeader() {
@@ -19,7 +19,7 @@ export default function CustomHeader() {
             <TouchableOpacity onPress={() => navigation.navigate('Characters')}>
                 <Image style={styles.img} source={require('../../assets/portal.png')}  resizeMode="cover"/>
             </TouchableOpacity>
-            <View style={styles.smallContainer}>   
+            <View style={[styles.smallContainer, {width: window.width - 91}]}>   
                 <Text style={[styles.title, { color: darkTheme ? constants.color_0 : constants.color_4 }]}>Rick & Morty Wiki</Text>
                 <SwitchStyles/>
             </View>
@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     smallContainer:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingRight: 12
+        alignItems: 'center'
     },
     title: {
         fontSize: 24,

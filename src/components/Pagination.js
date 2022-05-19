@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Text, TextInput } from 'react-native';
 import { useWindowDimensions } from 'react-native';
-import constants from '../constants';
+import constants from '../css/constants';
 import CustomModal from './CustomModal';
 import { useTheme } from '../context/ThemeContext';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useWindowDimensions } from 'react-native';
-import constants from '../constants';
+import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Card({ character }) {
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: '600',
     width: '100%',
     marginVertical: 12
   },
   text: {
     fontSize: 16,
-    fontWeight: 450,
+    fontWeight: '400',
     width: '100%'
   }
 });
