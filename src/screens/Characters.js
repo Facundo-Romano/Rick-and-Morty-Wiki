@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from 'react-native';
+import React, { useState, useEffect, useRef } from "react";
+import { View, FlatList, StyleSheet, ScrollView, Animated, Text } from 'react-native';
 import Loader from "../components/Loader";
 import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
@@ -16,10 +16,16 @@ export default function Characters() {
     const [totalCharacters, setTotalCharacters] = useState(0);
     const window = useWindowDimensions();
     const darkTheme = useTheme();
+    const scrolling = useRef(new Animated.Value(0)).current;
+    const translation = scrolling.interpolate({
+        inputRange: [10, 120],
+        outputRange: [0, -100],
+        extrapolate: 'clamp'
+    })
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://rickandmortyapi.com/api/character");
+            const response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`);
             const data =  await response.json();
             await Promise.all([
                 setData(data.results),
@@ -33,7 +39,6 @@ export default function Characters() {
         .catch(err => console.log(err))
     }, [])
     
-
     const changePage = (page) => {
         try {
             if (page === '') {
@@ -62,25 +67,57 @@ export default function Characters() {
     }
 
     return (
-        <View style={[styles.container, {width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
-            {
-                loading ? 
-                <Loader/> :
-                <View style={[styles.container, {width: window.width}]}>
-                    <CustomHeader/>
-                    <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
-                    <View style={[styles.card, {width: window.width}]}>
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            showsHorizontalScrollIndicator={false}
-                            data={data}
-                            keyExtractor={(item) => item.id.toString()}
-                            renderItem={({item}) =>  <Card character={item}/>}
-                        />
-                    </View>
-                </View> 
-            }
-        </View>
+        <>
+            <Animated.View style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: window.height/12,
+                    width: window.width,
+                    zIndex: 1,
+                    transform: [{
+                        translateY: translation
+                    }] 
+                }}>
+                <CustomHeader/>
+            </Animated.View>
+            <Animated.ScrollView 
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                onScroll={Animated.event([
+                    {
+                        nativeEvent: {
+                            contentOffset: {
+                                y: scrolling
+                            }
+                        }
+                    }
+                    ], { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
+                style={{flex: 1}}>
+                    {
+                        loading ? 
+                        <View style={[styles.loaderContainer, {height: window.height, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                            <Loader/>
+                        </View>
+                        :
+                        <View style={[styles.container, {width: window.width, marginTop: window.height/12}]}>
+                            <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
+                                <View style={[styles.card, {width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                                    {
+                                        data.map((item, idx) => {
+                                            return (
+                                                <Card character={item} key={idx} />
+                                            )
+                                        })
+                                    }
+                                </View>
+                        </View> 
+                    } 
+            </Animated.ScrollView>
+        </>
     )
 };
 
@@ -88,7 +125,12 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'flex-start',
+    },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     card: {
         flex: 1,

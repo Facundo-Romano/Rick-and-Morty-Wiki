@@ -11,16 +11,14 @@ export default function CustomHeader() {
     const darkTheme = useTheme();
 
     return (
-        <View style={[  styles.container, 
-                        {minHeight: window.height/12, 
-                        width: window.width, 
-                        backgroundColor: darkTheme? constants.color_4 : constants.color_0 
-                        }]}>
+        <View style={[styles.container,{backgroundColor: darkTheme? constants.color_4 : constants.color_0}]}>
             <TouchableOpacity onPress={() => navigation.navigate('Characters')}>
                 <Image style={styles.img} source={require('../../assets/portal.png')}  resizeMode="cover"/>
             </TouchableOpacity>
             <View style={[styles.smallContainer, {width: window.width - 91}]}>   
-                <Text style={[styles.title, { color: darkTheme ? constants.color_0 : constants.color_4 }]}>Rick & Morty Wiki</Text>
+                <Text style={[styles.title, { color: darkTheme ? constants.color_0 : constants.color_4 }]}>
+                    Rick & Morty Wiki
+                    </Text>
                 <SwitchStyles/>
             </View>
         </View>
@@ -32,6 +30,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         flexDirection: 'row',
+        height: '100%',
+        width: '100%'
     },
     img: {
         width: 50,
