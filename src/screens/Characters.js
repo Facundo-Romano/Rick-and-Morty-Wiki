@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Animated } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import Loader from "../components/Loader";
 import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
@@ -21,7 +22,8 @@ export default function Characters({navigation}) {
         inputRange: [0, 110],
         outputRange: [0, -100],
         extrapolate: 'clamp'
-    })
+    });
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,13 +33,14 @@ export default function Characters({navigation}) {
                 setData(data.results),
                 setLoading(false),
                 setPages(data.info.pages),
-                setTotalCharacters(data.info.count)
+                setTotalCharacters(data.info.count),
+                setCurrentPage(1)
             ])
         }
         
         fetchData()
         .catch(err => console.log(err))
-    }, [])
+    }, [isFocused])
     
     const changePage = (page) => {
         try {

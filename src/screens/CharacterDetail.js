@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
 import Loader from '../components/Loader';
 import CustomHeader from '../components/CustomHeader';
@@ -13,6 +14,7 @@ export default function CharacterDetail({route, navigation}) {
     const window = useWindowDimensions();
     const darkTheme = useTheme();
     const regex = /(\d+)/g;
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,7 +28,7 @@ export default function CharacterDetail({route, navigation}) {
         
         fetchData()
         .catch(err => console.log(err))
-    }, []);
+    }, [isFocused]);
 
     return (
         <ScrollView 
