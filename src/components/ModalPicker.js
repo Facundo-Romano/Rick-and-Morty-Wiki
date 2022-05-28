@@ -28,9 +28,7 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
                                     }
                                     } key={index}
                                     >
-                                    <View style={[styles.circle, 
-                                                {backgroundColor: darkTheme ? constants.color_4 : constants.color_0}
-                                            ]} />
+                                    <View style={styles.circle}/>
                                     <Text style={[styles.text, 
                                                 {color: darkTheme ? constants.color_4 : constants.color_0}
                                                 ]}>
@@ -68,7 +66,8 @@ const styles = StyleSheet.create({
         width: 7,
         height: 7,
         borderRadius: 7,
-        marginRight: 4
+        marginRight: 4,
+        backgroundColor: constants.color_3
     },
     text: {
         margin: 5,

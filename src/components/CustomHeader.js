@@ -18,7 +18,7 @@ export default function CustomHeader() {
             <View style={[styles.smallContainer, {width: window.width - 91}]}>   
                 <Text style={[styles.title, { color: darkTheme ? constants.color_0 : constants.color_4 }]}>
                     Rick & Morty Wiki
-                    </Text>
+                </Text>
                 <SwitchStyles/>
             </View>
         </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold',
         paddingRight: 25
     }

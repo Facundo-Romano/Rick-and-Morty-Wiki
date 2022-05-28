@@ -11,12 +11,11 @@ export default function CustomModal({ page, changePage, pages }) {
 
     return (
        <View style={[styles.container]}>
-           <TouchableOpacity style={styles.button} onPress={() => {setIsModalVisible(true)}}>
-                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_4}]}>
-                    Page   
-                </Text>
-                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_4}]}>
-                    {` ${page}`}
+           <TouchableOpacity 
+                style={[styles.button, {backgroundColor: darkTheme ? constants.color_4 : constants.color_2 }]}
+                onPress={() => {setIsModalVisible(true)}}>
+                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_5}]}>
+                    {`Page ${page}`}   
                 </Text>
            </TouchableOpacity>
            <Modal
@@ -39,8 +38,8 @@ export default function CustomModal({ page, changePage, pages }) {
                     <ModalPicker 
                     modalVisibility={(boolean) => setIsModalVisible(boolean)} 
                     changePage={(number) => changePage(number)}
-                    pages={pages}/>}
-                /* style={{justifyContent: 'flex-start'} }*/
+                    pages={pages}/>
+                    }
                 />
        </View>  
     )
@@ -53,15 +52,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     button: {
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%',
+        margin: 6,
+        marginRight: 25,
+        paddingVertical: 6,
+        paddingHorizontal: 9,
+        borderRadius: 5,
+        height: 30,
+        width: 80,
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
     },
     text: {
+        position: 'absolute',
+        textAlign: 'center',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        left: 0,
+        right: 0,
         fontSize: 12,
         textTransform: 'uppercase',
-        textAlign: 'center',
+        fontWeight: '700',
     }
 });

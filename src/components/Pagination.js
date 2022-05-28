@@ -19,33 +19,35 @@ export default function Pagination({ page, changePage, pages }) {
                             page > 1 ?
                             <TouchableOpacity 
                                 style={[styles.button, 
-                                        {backgroundColor: darkTheme ? constants.color_4 : constants.color_0}
+                                        {backgroundColor: darkTheme ? constants.color_4 : constants.color_2
+                                        }
                                         ]} 
                                 onPress={() => changePage(page-1)}>
                                 <Text style={[styles.text, 
-                                            {color: darkTheme ? constants.color_0 : constants.color_4}
-                                            ]}>
-                                        Prev Page
+                                        {color: darkTheme ? constants.color_0 : constants.color_5
+                                        }]}>
+                                        Prev
                                 </Text>
                             </TouchableOpacity> :
                             <></>
                         }
-                        <TouchableOpacity  
-                            style={[styles.button, 
-                                    {backgroundColor: darkTheme ? constants.color_4 : constants.color_0}
-                                    ]}  
-                            onPress={() => changePage(page+1)}>
-                            <Text style={[styles.text, 
-                                        {color: darkTheme ? constants.color_0 : constants.color_4
-                                        }]}>
-                                    Next Page
-                            </Text>
-                        </TouchableOpacity>
-                        <View style={[styles.smallContainer, 
-                                    {backgroundColor: darkTheme ? constants.color_4 : constants.color_0
-                                    }]}>
-                            <CustomModal page={page} changePage={(number) => changePage(number)} pages={pages}/>
-                        </View>
+                        {
+                            page < pages ?
+                            <TouchableOpacity  
+                                style={[styles.button, 
+                                        {backgroundColor: darkTheme ? constants.color_4 : constants.color_2
+                                        }
+                                        ]}  
+                                onPress={() => changePage(page+1)}>
+                                <Text style={[styles.text, 
+                                            {color: darkTheme ? constants.color_0 : constants.color_5
+                                            }]}>
+                                        Next
+                                </Text>
+                            </TouchableOpacity> :
+                            <></>
+                        }
+                        <CustomModal page={page} changePage={(number) => changePage(number)} pages={pages}/>
                     </View>
     )
 };
@@ -55,13 +57,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingTop: 12
+        paddingTop: 12,
     },
     button: {
         margin: 6,
         paddingVertical: 6,
         paddingHorizontal: 9,
-        color: '#000',
         backgroundColor: '#fff',
         borderRadius: 5,
         height: 30,
@@ -70,20 +71,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     text: {
+        position: 'absolute',
+        textAlign: 'center',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        left: 0,
+        right: 0,
         fontSize: 12,
         textTransform: 'uppercase',
-    },
-    smallContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 7,
-        paddingHorizontal: 9,
-        marginLeft: 18,
-        marginRight: '5%',
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        height: 30,
-        width: 80
+        fontWeight: '700',
     }
 });

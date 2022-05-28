@@ -18,7 +18,7 @@ export default function Characters() {
     const darkTheme = useTheme();
     const scrolling = useRef(new Animated.Value(0)).current;
     const translation = scrolling.interpolate({
-        inputRange: [10, 120],
+        inputRange: [0, 110],
         outputRange: [0, -100],
         extrapolate: 'clamp'
     })
@@ -74,6 +74,7 @@ export default function Characters() {
                     left: 0,
                     right: 0,
                     height: window.height/12,
+                    minHeight: 55,
                     width: window.width,
                     zIndex: 1,
                     transform: [{
@@ -103,7 +104,7 @@ export default function Characters() {
                             <Loader/>
                         </View>
                         :
-                        <View style={[styles.container, {width: window.width, marginTop: window.height/12}]}>
+                        <View style={[styles.container, {width: window.width, marginTop: 60}]}>
                             <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
                                 <View style={[styles.card, {width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
                                     {
