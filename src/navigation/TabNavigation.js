@@ -16,7 +16,6 @@ export default function TabNavigation() {
     const darkTheme = useTheme();
 
     return (
-        <NavigationContainer>
          <Tab.Navigator 
             screenOptions = {{ 
               tabBarShowLabel: false, 
@@ -28,7 +27,7 @@ export default function TabNavigation() {
               headerShown: false }}>
             <Tab.Screen 
                 name="Characters" 
-                children={() => <Characters />} 
+                children={(props) => <Characters {...props}/>} 
                 options={{ 
                   tabBarIcon: ({focused}) => (
                     <View style={styles.icon}>
@@ -48,7 +47,7 @@ export default function TabNavigation() {
             />
             <Tab.Screen 
                 name="Locations" 
-                children={() => <Locations />} 
+                children={(props) => <Locations {...props} />} 
                 options={{ tabBarIcon: ({focused}) => 
                           <Ionicons 
                             name="location-sharp" 
@@ -62,7 +61,7 @@ export default function TabNavigation() {
             />
             <Tab.Screen 
                 name="Chapters" 
-                children={() => <Chapters />} 
+                children={(props) => <Chapters {...props} />} 
                 options={{ tabBarIcon: ({focused}) => 
                           <MaterialIcons 
                             name="local-movies" 
@@ -75,7 +74,6 @@ export default function TabNavigation() {
                         }}
             />
          </Tab.Navigator>
-       </NavigationContainer>
       )
 };
 

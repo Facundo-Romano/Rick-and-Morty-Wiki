@@ -8,7 +8,7 @@ import LocationCard from '../components/LocationCard';
 import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
-export default function Locations() {
+export default function Locations({navigation}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
@@ -108,7 +108,7 @@ export default function Locations() {
                                     {
                                         data.map((item, idx) => {
                                             return (
-                                                <LocationCard location={item} key={idx} />
+                                                <LocationCard location={item} key={idx} navigation={navigation} />
                                             )
                                         })
                                     }

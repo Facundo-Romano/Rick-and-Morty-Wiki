@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 import requireImages from '../css/requireImages';
 
-export default function ChapterCard({ chapter, id, page }) {
+export default function ChapterCard({ chapter, id, page, navigation }) {
   const darkTheme = useTheme();
   const window = useWindowDimensions();
 
   return (
-    <View style={[
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('ChapterDetail', {id: chapter.id})}
+      style={[
         styles.bigContainer, 
         { width: window.width - window.width/7,
           minhHeight: window.height/5, 
@@ -32,7 +34,7 @@ export default function ChapterCard({ chapter, id, page }) {
             }`}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 };
 

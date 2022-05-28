@@ -8,7 +8,7 @@ import CharacterCard from '../components/CharacterCard';
 import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
-export default function Characters() {
+export default function Characters({navigation}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
@@ -110,7 +110,7 @@ export default function Characters() {
                                     {
                                         data.map((item, idx) => {
                                             return (
-                                                <CharacterCard character={item} key={idx} />
+                                                <CharacterCard character={item} key={idx} navigation={navigation}/>
                                             )
                                         })
                                     }

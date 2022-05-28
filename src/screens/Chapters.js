@@ -8,7 +8,7 @@ import ChapterCard from '../components/ChapterCard';
 import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
-export default function Chapters() {
+export default function Chapters({navigation}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
@@ -108,7 +108,7 @@ export default function Chapters() {
                                     {
                                         data.map((item, idx) => {
                                             return (
-                                                <ChapterCard chapter={item} id={idx+1} page={currentPage} key={idx} />
+                                                <ChapterCard chapter={item} id={idx+1} page={currentPage} key={idx} navigation={navigation} />
                                             )
                                         })
                                     }

@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 
-export default function LocationCard({ location }) {
+export default function LocationCard({ location, navigation }) {
   const darkTheme = useTheme();
   const window = useWindowDimensions();
 
   return (
-    <View style={[
+    <TouchableOpacity 
+        onPress={() => navigation.navigate('LocationDetail', {id: location.id})}
+        style={[
             styles.bigContainer, 
             { width: window.width - window.width/7,
             minhHeight: window.height/5, 
@@ -31,7 +33,7 @@ export default function LocationCard({ location }) {
                 </Text>
             </View>
         </View>
-    </View>
+    </TouchableOpacity>
   )
 };
 
