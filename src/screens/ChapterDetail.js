@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import Loader from '../components/Loader';
 import CustomHeader from '../components/CustomHeader';
 import { useTheme } from "../context/ThemeContext";
@@ -51,6 +52,11 @@ export default function ChapterDetail({route, navigation}) {
             <View style={styles.header}>
                 <CustomHeader/>
             </View>
+            <View style={styles.goBackContainer}>
+                <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
+                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_5 : constants.color_0} />
+                </TouchableOpacity>
+            </View>
             <View style={styles.main}>
                     {
                         loading ? 
@@ -61,8 +67,7 @@ export default function ChapterDetail({route, navigation}) {
                         <View 
                             style={[styles.container, 
                                     {
-                                        width: window.width-50, 
-                                        marginTop: 30, 
+                                        width: window.width-50,
                                         backgroundColor: darkTheme? constants.color_2 : constants.color_4
                                     }
                                 ]}>
@@ -118,6 +123,20 @@ const styles = StyleSheet.create({
     header: {
         height: 60,
         width: '100%',
+    },
+    goBackContainer: {
+        minHeight: 30,
+        width: '100%',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginTop: 18,
+        margin: 6
+    },
+    goBackBtn: {
+        flex: 1,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginLeft: 6
     },
     main: {
         flex: 1,
