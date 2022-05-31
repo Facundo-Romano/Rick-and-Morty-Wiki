@@ -20,9 +20,9 @@ export default function TabNavigation() {
             screenOptions = {{ 
               tabBarShowLabel: false, 
               tabBarStyle: {
-                  backgroundColor: darkTheme ? constants.color_0 : constants.color_5,
+                  backgroundColor: darkTheme ? constants.color_1 : constants.color_3,
                   borderTopWidth:1,
-                  borderTopColor: darkTheme ? constants.color_0 : constants.color_5
+                  borderTopColor: darkTheme ? constants.color_1 : constants.color_3
                 }, 
               headerShown: false }}>
             <Tab.Screen 
@@ -36,8 +36,8 @@ export default function TabNavigation() {
                           height: 35, 
                           width: 35, 
                           tintColor: darkTheme ? 
-                                    focused ? constants.color_3 : constants.color_4 :
-                                    focused ? constants.color_3 : constants.color_0
+                                    focused ? constants.color_green : constants.color_3 :
+                                    focused ? constants.color_green : constants.color_1
                         }}
                         source={require('../../assets/custom/rickIcon.png')}
                         resizeMode='contain'
@@ -54,8 +54,8 @@ export default function TabNavigation() {
                             size={30}  
                             style={{
                               color: darkTheme ? 
-                              focused ? constants.color_3 : constants.color_4 :
-                              focused ? constants.color_3 : constants.color_0
+                              focused ? constants.color_green : constants.color_3 :
+                              focused ? constants.color_green : constants.color_1
                             }}/> 
                         }}
             />
@@ -68,8 +68,8 @@ export default function TabNavigation() {
                             size={30}
                             style={{
                               color: darkTheme ? 
-                              focused ? constants.color_3 : constants.color_4 :
-                              focused ? constants.color_3 : constants.color_0
+                              focused ? constants.color_green : constants.color_3 :
+                              focused ? constants.color_green : constants.color_1
                             }}/> 
                         }}
             />

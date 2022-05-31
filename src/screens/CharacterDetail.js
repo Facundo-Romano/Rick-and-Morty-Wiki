@@ -33,7 +33,7 @@ export default function CharacterDetail({route, navigation}) {
 
     return (
         <ScrollView 
-            style={{backgroundColor: darkTheme? constants.color_0 : constants.color_5}}
+            style={{backgroundColor: darkTheme? constants.color_1 : constants.color_3}}
             showsHorizontalScrollIndicator={false} 
             showsVerticalScrollIndicator={false}>
             <View style={styles.header}>
@@ -41,13 +41,13 @@ export default function CharacterDetail({route, navigation}) {
             </View>
             <View style={styles.goBackContainer}>
                 <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_5 : constants.color_0} />
+                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_3 : constants.color_1} />
                 </TouchableOpacity>
             </View>
             <View style={styles.main}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
@@ -55,42 +55,42 @@ export default function CharacterDetail({route, navigation}) {
                             style={[styles.container, 
                                     {
                                         width: window.width-50,
-                                        backgroundColor: darkTheme? constants.color_2 : constants.color_4
+                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
                                     }
                                 ]}>
                             <Image 
                                 style={[styles.img, {width: window.width*3/4, height: window.width*3/4}]} 
                                 source={{uri: character.image}}  
                                 resizeMode="cover" />
-                            <Text style={[styles.title, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                 {character.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Status:  {character.status}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Species:  {character.species}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Gender:  {character.gender}
                                 </Text>
                                 <TouchableOpacity onPress={character.origin.url ? () => navigation.navigate('LocationDetail', {id: character.origin.url.match(regex)}) : () => {return}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         Origin:  {character.origin.name}
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={character.location.url ? () => navigation.navigate('LocationDetail', {id: character.location.url.match(regex)}) : () => {return}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         Last known location:
                                     </Text>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         {character.location.name}
                                     </Text>
                                 </TouchableOpacity>
                                 <View style={styles.episodesContainer}>
                                     <Text style={[styles.text, 
-                                        {color: darkTheme? constants.color_5 : constants.color_0, marginRight: 6}]}>
+                                        {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
                                             Episodes:
                                     </Text>
                                     {
@@ -102,7 +102,7 @@ export default function CharacterDetail({route, navigation}) {
                                                     onPress={() => navigation.navigate('ChapterDetail', {id: episode})} 
                                                     key={idx}
                                                     >
-                                                    <Text style={[styles.episodes, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                                    <Text style={[styles.episodes, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                                         {episode}
                                                     </Text>
                                                 </TouchableOpacity>

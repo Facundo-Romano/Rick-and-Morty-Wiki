@@ -46,7 +46,7 @@ export default function ChapterDetail({route, navigation}) {
 
     return (
         <ScrollView 
-            style={{backgroundColor: darkTheme? constants.color_0 : constants.color_5}}
+            style={{backgroundColor: darkTheme? constants.color_1 : constants.color_3}}
             showsHorizontalScrollIndicator={false} 
             showsVerticalScrollIndicator={false}>
             <View style={styles.header}>
@@ -54,13 +54,13 @@ export default function ChapterDetail({route, navigation}) {
             </View>
             <View style={styles.goBackContainer}>
                 <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_5 : constants.color_0} />
+                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_3 : constants.color_1} />
                 </TouchableOpacity>
             </View>
             <View style={styles.main}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
@@ -68,30 +68,30 @@ export default function ChapterDetail({route, navigation}) {
                             style={[styles.container, 
                                     {
                                         width: window.width-50,
-                                        backgroundColor: darkTheme? constants.color_2 : constants.color_4
+                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
                                     }
                                 ]}>
                             <Image 
                                 style={[styles.img, {width: window.width*3/4, height: window.width*2/4}]} 
                                 source={requireImages[id]}   
                                 resizeMode="cover" />
-                            <Text style={[styles.title, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                 {chapter.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Air date:  {chapter.air_date}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     {`Season:  ${chapter.episode[2]}`}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     {`Episode:  ${
                                         chapter.episode[4] > 0 ? chapter.episode[4] + chapter.episode[5] : chapter.episode[5]
                                     }`}
                                 </Text>
                                 <Text style={[styles.text, 
-                                        {color: darkTheme? constants.color_5 : constants.color_0, marginRight: 6}]}>
+                                        {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
                                            { `Characters:  `}
                                 </Text>
                                 <View style={styles.charactersContainer}>
@@ -103,7 +103,7 @@ export default function ChapterDetail({route, navigation}) {
                                                     onPress={() => navigation.navigate('CharacterDetail', {id: item.id})} 
                                                     key={idx}
                                                     >
-                                                    <Text style={[styles.characters, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                                    <Text style={[styles.characters, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                                         {item.name}
                                                     </Text>
                                                 </TouchableOpacity>

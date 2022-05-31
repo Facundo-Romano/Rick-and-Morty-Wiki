@@ -12,9 +12,9 @@ export default function CustomModal({ page, changePage, pages }) {
     return (
        <View style={[styles.container]}>
            <TouchableOpacity 
-                style={[styles.button, {backgroundColor: darkTheme ? constants.color_4 : constants.color_2 }]}
+                style={[styles.button, {backgroundColor: darkTheme ? constants.color_3 : constants.color_1 }]}
                 onPress={() => {setIsModalVisible(true)}}>
-                <Text style={[styles.text, {color: darkTheme ? constants.color_0 : constants.color_5}]}>
+                <Text style={[styles.text, {color: darkTheme ? constants.color_1 : constants.color_3}]}>
                     {`Page ${page}`}   
                 </Text>
            </TouchableOpacity>

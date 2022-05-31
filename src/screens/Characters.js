@@ -10,6 +10,7 @@ import constants from "../css/constants";
 import { useTheme } from "../context/ThemeContext";
 
 export default function Characters({navigation}) {
+    const scrollRef = useRef();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(0);
@@ -19,16 +20,21 @@ export default function Characters({navigation}) {
     const darkTheme = useTheme();
     const scrolling = useRef(new Animated.Value(0)).current;
     const translation = scrolling.interpolate({
-        inputRange: [0, 110],
+        inputRange: [60, 160],
         outputRange: [0, -100],
         extrapolate: 'clamp'
     });
     const isFocused = useIsFocused();
 
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`);
             const data =  await response.json();
+            scrollRef.current?.scrollTo({
+                y: 0,
+                animated: true,
+            });
             await Promise.all([
                 setData(data.results),
                 setLoading(false),
@@ -69,6 +75,13 @@ export default function Characters({navigation}) {
         }
     }
 
+    const onPressTouch = () => {
+        scrollRef.current?.scrollTo({
+            y: 0,
+            animated: true,
+    });
+}
+
     return (
         <>
             <Animated.View style={{
@@ -87,6 +100,7 @@ export default function Characters({navigation}) {
                 <CustomHeader/>
             </Animated.View>
             <Animated.ScrollView 
+                ref={scrollRef}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
                 onScroll={Animated.event([
@@ -103,13 +117,13 @@ export default function Characters({navigation}) {
                 style={{flex: 1}}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                        <View style={[styles.loaderContainer, {height: window.height, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
-                        <View style={[styles.container, {width: window.width, marginTop: 60}]}>
+                        <View style={[styles.container, {width: window.width, marginTop: window.height/12}]}>
                             <Pagination page={currentPage} changePage={(page) => changePage(page)} pages={pages}/>
-                                <View style={[styles.card, {width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                                <View style={[styles.card, {width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                                     {
                                         data.map((item, idx) => {
                                             return (

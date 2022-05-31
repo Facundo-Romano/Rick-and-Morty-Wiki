@@ -15,21 +15,27 @@ export default function LocationCard({ location, navigation }) {
             styles.bigContainer, 
             { width: window.width - window.width/7,
             minhHeight: window.height/5, 
-            backgroundColor: darkTheme ? constants.color_1 : constants.color_5}
+            borderColor: darkTheme ? constants.color_3 : constants.color_1}
         ]}>
-        <Text style={[styles.title, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
+        <Text style={[styles.title, {color: darkTheme ? constants.color_3 : constants.color_1}]}>
                 { location.name }
         </Text>
         <View style={styles.line}/>
         <View style={styles.subContainer}>
             <View style={styles.container}>
-                <Text style={[styles.text, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
-                    Type - { location.type }
+                <Text style={[styles.text, {color: darkTheme ? constants.color_3 : constants.color_1}]}>
+                    Type
+                </Text>
+                <Text style={styles.textType}>
+                    { location.type }
                 </Text>
             </View>
-            <View style={styles.detailsContainer}>
-                <Text style={[styles.text, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
-                    Dimension - { location.dimension }
+            <View style={styles.container}>
+                <Text style={[styles.text, {color: darkTheme ? constants.color_3 : constants.color_1}]}>
+                    Dimension
+                </Text>
+                <Text style={styles.textDimension}>
+                    { location.dimension }
                 </Text>
             </View>
         </View>
@@ -41,6 +47,8 @@ const styles = StyleSheet.create({
   bigContainer: {
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 1, 
     maxWidth: 450,
     marginVertical: 16,
     padding: 6,
@@ -50,21 +58,23 @@ const styles = StyleSheet.create({
   subContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
+      width: '100%',
       paddingHorizontal: 12,
+      paddingBottom: 12
   },
   container: {
-      width: '45%',
-      paddingRight: 12
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      marginHorizontal: 6
   },
   line:{
       height: 5,
       width: '75%',
-      backgroundColor: constants.color_3,
+      backgroundColor: constants.color_green,
+      borderRadius: 4,
       marginTop: 4,
       marginBottom: 12,
-  },
-  detailsContainer: {
-      width: '45%'
   },
   title: {
     textAlign: 'center',
@@ -81,5 +91,35 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 2,
     lineHeight: 26,
+  },
+  textType: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '500',
+    borderWidth: 1,
+    textTransform: 'uppercase',
+    backgroundColor: 'transparent',
+    letterSpacing: 2,
+    color: constants.color_poopybutthole,
+    borderColor: constants.color_poopybutthole,
+    width: 'max-content',
+    maxWidth: '100%',
+    paddingHorizontal: 4,
+    marginVertical: 8
+  },
+  textDimension: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '500',
+    borderWidth: 1,
+    textTransform: 'uppercase',
+    backgroundColor: 'transparent',
+    letterSpacing: 2,
+    color: constants.color_disease,
+    borderColor: constants.color_disease,
+    width: 'max-content',
+    maxWidth: '100%',
+    paddingHorizontal: 4,
+    marginVertical: 8
   }
 });

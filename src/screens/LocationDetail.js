@@ -45,7 +45,7 @@ export default function LocationDetail({route, navigation}) {
 
     return (
         <ScrollView 
-            style={{backgroundColor: darkTheme? constants.color_0 : constants.color_5}}
+            style={{backgroundColor: darkTheme? constants.color_1 : constants.color_3}}
             showsHorizontalScrollIndicator={false} 
             showsVerticalScrollIndicator={false}>
             <View style={styles.header}>
@@ -53,13 +53,13 @@ export default function LocationDetail({route, navigation}) {
             </View>
             <View style={styles.goBackContainer}>
                 <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_5 : constants.color_0} />
+                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_3 : constants.color_1} />
                 </TouchableOpacity>
             </View>
             <View style={styles.main}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_0 : constants.color_4}]}>
+                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
@@ -67,31 +67,31 @@ export default function LocationDetail({route, navigation}) {
                             style={[styles.container, 
                                     {
                                         width: window.width-50, 
-                                        backgroundColor: darkTheme? constants.color_2 : constants.color_4
+                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
                                     }
                                 ]}>
-                            <Text style={[styles.title, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                 {location.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Type
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         {location.type}
                                     </Text>
                                 </View>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                     Dimension
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         {location.dimension}
                                     </Text>
                                 </View>
                                 <Text style={[styles.text, 
-                                    {color: darkTheme? constants.color_5 : constants.color_0, marginRight: 6}]}>
+                                    {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
                                         Residents:
                                 </Text>
                                 <View style={styles.residentsContainer}>
@@ -103,7 +103,7 @@ export default function LocationDetail({route, navigation}) {
                                                         onPress={() => navigation.navigate('CharacterDetail', {id: item.id})} 
                                                         key={idx}
                                                         >
-                                                        <Text style={[styles.residents, {color: darkTheme? constants.color_5 : constants.color_0}]}>
+                                                        <Text style={[styles.residents, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                                             {item.name}
                                                         </Text>
                                                     </TouchableOpacity>

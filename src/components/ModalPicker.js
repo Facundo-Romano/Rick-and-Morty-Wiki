@@ -14,7 +14,7 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
                         {width: window.width/5, 
                         maxHeight: window.height*0.75,
                         marginTop: window.height/7,
-                        backgroundColor: darkTheme ? constants.color_0 : constants.color_4
+                        backgroundColor: darkTheme ? constants.color_1 : constants.color_3
                     }]}>
                 <ScrollView 
                     showsHorizontalScrollIndicator={false}
@@ -30,7 +30,7 @@ export default function ModalPicker({modalVisibility, changePage, pages}) {
                                     >
                                     <View style={styles.circle}/>
                                     <Text style={[styles.text, 
-                                                {color: darkTheme ? constants.color_4 : constants.color_0}
+                                                {color: darkTheme ? constants.color_3 : constants.color_1}
                                                 ]}>
                                                     {item}
                                     </Text>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         height: 7,
         borderRadius: 7,
         marginRight: 4,
-        backgroundColor: constants.color_3
+        backgroundColor: constants.color_green
     },
     text: {
         margin: 5,

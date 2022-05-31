@@ -16,22 +16,20 @@ export default function ChapterCard({ chapter, id, page, navigation }) {
         styles.bigContainer, 
         { width: window.width - window.width/7,
           minhHeight: window.height/5, 
-          backgroundColor: darkTheme ? constants.color_1 : constants.color_5}]}>
+          borderColor: darkTheme ? constants.color_3 : constants.color_1}]}>
       <Image 
         style={{width: window.height/6, minHeight: window.height/6, height: '100%'}} 
         source={requireImages[id+20*(page-1)]}  
         resizeMode="cover"/>
       <View style={ styles.container }>
-        <Text style={[styles.title, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
+        <Text style={[styles.title, {color: darkTheme ? constants.color_3 : constants.color_1}]}>
             { chapter.name }
         </Text>
-        <Text style={[styles.text, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
+        <Text style={styles.textSeason}>
             {`Season ${chapter.episode[2]}`}
         </Text>
-        <Text style={[styles.text, {color: darkTheme ? constants.color_4 : constants.color_0}]}>
-            {`Episode ${
-                chapter.episode[4] > 0 ? chapter.episode[4] + chapter.episode[5] : chapter.episode[5]
-            }`}
+        <Text style={styles.textEpisode}>
+            {`Episode ${chapter.episode[4] > 0 ? chapter.episode[4] + chapter.episode[5] : chapter.episode[5]}`}
         </Text>
       </View>
     </TouchableOpacity>
@@ -42,6 +40,8 @@ const styles = StyleSheet.create({
   bigContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    backgroundColor: 'transparent',
+    borderWidth: 1, 
     maxWidth: 450,
     marginVertical: 16,
     borderRadius: 10,
@@ -49,8 +49,10 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '50%',
+    marginBottom: '3%',
     marginLeft: '6%',
     marginRight: '2%',
+    justifyContent: 'flex-start'
   },
   title: {
     fontSize: 20,
@@ -63,5 +65,36 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     width: '100%',
     marginBottom: 4
+  },
+  textSeason: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '500',
+    borderWidth: 1,
+    textTransform: 'uppercase',
+    backgroundColor: 'transparent',
+    letterSpacing: 2,
+    color: constants.color_animal,
+    borderColor: constants.color_animal,
+    width: 'max-content',
+    maxWidth: '100%',
+    paddingHorizontal: 4,
+    marginVertical: 8
+  },
+  textEpisode: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '500',
+    borderWidth: 1,
+    textTransform: 'uppercase',
+    backgroundColor: 'transparent',
+    letterSpacing: 2,
+    color: constants.color_cronenberg,
+    borderColor: constants.color_cronenberg,
+    width: 'max-content',
+    maxWidth: '100%',
+    paddingHorizontal: 4,
+    marginTop: 4,
+    marginBottom: 8
   }
 });

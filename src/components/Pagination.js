@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { useWindowDimensions } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import constants from '../css/constants';
 import CustomModal from './CustomModal';
 import { useTheme } from '../context/ThemeContext';
@@ -13,21 +14,17 @@ export default function Pagination({ page, changePage, pages }) {
         <View style={[ styles.container, 
                     {height: window.height/12, 
                     width: window.width, 
-                    backgroundColor: darkTheme ? constants.color_0 : constants.color_4
+                    backgroundColor: darkTheme ? constants.color_1 : constants.color_3
                     }]}>
                         {
                             page > 1 ?
                             <TouchableOpacity 
                                 style={[styles.button, 
-                                        {backgroundColor: darkTheme ? constants.color_4 : constants.color_2
+                                        {backgroundColor: darkTheme ? constants.color_3 : constants.color_1
                                         }
                                         ]} 
                                 onPress={() => changePage(page-1)}>
-                                <Text style={[styles.text, 
-                                        {color: darkTheme ? constants.color_0 : constants.color_5
-                                        }]}>
-                                        Prev
-                                </Text>
+                                    <MaterialIcons name="keyboard-arrow-left" size={24} color={darkTheme ? constants.color_1 : constants.color_3} />
                             </TouchableOpacity> :
                             <></>
                         }
@@ -35,15 +32,11 @@ export default function Pagination({ page, changePage, pages }) {
                             page < pages ?
                             <TouchableOpacity  
                                 style={[styles.button, 
-                                        {backgroundColor: darkTheme ? constants.color_4 : constants.color_2
+                                        {backgroundColor: darkTheme ? constants.color_3 : constants.color_1
                                         }
                                         ]}  
                                 onPress={() => changePage(page+1)}>
-                                <Text style={[styles.text, 
-                                            {color: darkTheme ? constants.color_0 : constants.color_5
-                                            }]}>
-                                        Next
-                                </Text>
+                                    <MaterialIcons name="keyboard-arrow-right" size={24} color={darkTheme ? constants.color_1 : constants.color_3} />
                             </TouchableOpacity> :
                             <></>
                         }
@@ -61,24 +54,10 @@ const styles = StyleSheet.create({
     },
     button: {
         margin: 6,
-        paddingVertical: 6,
-        paddingHorizontal: 9,
-        backgroundColor: '#fff',
         borderRadius: 5,
         height: 30,
-        width: 80,
+        width: 30,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    text: {
-        position: 'absolute',
-        textAlign: 'center',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        left: 0,
-        right: 0,
-        fontSize: 12,
-        textTransform: 'uppercase',
-        fontWeight: '700',
     }
 });
