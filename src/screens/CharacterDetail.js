@@ -82,7 +82,7 @@ export default function CharacterDetail({route, navigation}) {
                                     {`Gender  ${character.gender}`}
                                 </Text>
                                 <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                        Origin:
+                                        Origin
                                 </Text>
                                 <TouchableOpacity onPress={character.origin.url ? () => navigation.navigate('LocationDetail', {id: character.origin.url.match(regex)}) : () => {return}}>
                                     <Text style={[
@@ -94,7 +94,7 @@ export default function CharacterDetail({route, navigation}) {
                                     </Text>
                                 </TouchableOpacity>
                                 <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                        Last known location:
+                                        Last known location
                                 </Text>
                                 <TouchableOpacity onPress={character.location.url ? () => navigation.navigate('LocationDetail', {id: character.location.url.match(regex)}) : () => {return}}>
                                     <Text style={[
@@ -107,7 +107,7 @@ export default function CharacterDetail({route, navigation}) {
                                 </TouchableOpacity>
                                 <Text style={[styles.text, 
                                         {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
-                                            Episodes:
+                                            Episodes
                                 </Text>
                                 <View style={styles.episodesContainer}>
                                     {
@@ -185,7 +185,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: '700',
-        margin: 3
+        margin: 3,
+        marginBottom: 8
     },
     episodesContainer: {
         flex: 1,
@@ -196,7 +197,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         maxWidth: '100%',
         backgroundColor: 'transparent',
-        borderColor: constants.color_unknown
+        borderColor: constants.color_unknown,
+        padding: 8
     },
     episodes: {
         alignSelf: "flex-start",

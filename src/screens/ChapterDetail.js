@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import Loader from '../components/Loader';
 import CustomHeader from '../components/CustomHeader';
 import { useTheme } from "../context/ThemeContext";
@@ -71,20 +70,23 @@ export default function ChapterDetail({route, navigation}) {
                                 {chapter.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                    Air date:  {chapter.air_date}
-                                </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={styles.textSeason}>
                                     {`Season:  ${chapter.episode[2]}`}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={styles.textEpisode}>
                                     {`Episode:  ${
                                         chapter.episode[4] > 0 ? chapter.episode[4] + chapter.episode[5] : chapter.episode[5]
                                     }`}
                                 </Text>
+                                <Text style={styles.text}>
+                                    Air date
+                                </Text>
+                                <Text style={styles.textDate}>
+                                   {chapter.air_date}
+                                </Text>
                                 <Text style={[styles.text, 
                                         {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
-                                           { `Characters:  `}
+                                           Characters
                                 </Text>
                                 <View style={styles.charactersContainer}>
                                     {
@@ -95,7 +97,7 @@ export default function ChapterDetail({route, navigation}) {
                                                     onPress={() => navigation.navigate('CharacterDetail', {id: item.id})} 
                                                     key={idx}
                                                     >
-                                                    <Text style={[styles.characters, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                                    <Text style={styles.characters}>
                                                         {item.name}
                                                     </Text>
                                                 </TouchableOpacity>
@@ -146,6 +148,52 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         width: '100%'
     },
+    textSeason: {
+        alignSelf: "flex-start",
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: '700',
+        borderWidth: 1,
+        textTransform: 'uppercase',
+        backgroundColor: 'transparent',
+        letterSpacing: 2,
+        color: constants.color_animal,
+        borderColor: constants.color_animal,
+        maxWidth: '100%',
+        paddingHorizontal: 4,
+        marginVertical: 8
+    },
+    textEpisode: {
+        alignSelf: "flex-start",
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: '700',
+        borderWidth: 1,
+        textTransform: 'uppercase',
+        backgroundColor: 'transparent',
+        letterSpacing: 2,
+        color: constants.color_cronenberg,
+        borderColor: constants.color_cronenberg,
+        maxWidth: '100%',
+        paddingHorizontal: 4,
+        marginTop: 4,
+        marginBottom: 8
+    },
+    textDate: {
+        alignSelf: "flex-start",
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: '700',
+        borderWidth: 1,
+        textTransform: 'uppercase',
+        backgroundColor: 'transparent',
+        letterSpacing: 2,
+        color: constants.color_human,
+        borderColor: constants.color_human,
+        maxWidth: '100%',
+        paddingHorizontal: 4,
+        marginVertical: 8
+    },
     text: {
         fontSize: 20,
         fontWeight: '700',
@@ -153,14 +201,22 @@ const styles = StyleSheet.create({
     },
     charactersContainer: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 8
+        borderWidth: 1,
+        width: '100%',
+        backgroundColor: 'transparent',
+        borderColor: constants.color_unknown,
+        padding: 8,
+        marginTop: 8
     },
     characters: {
-        fontSize: 16,
-        fontWeight: '500',
-        margin: 1
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '700',
+        color: constants.color_unknown,
+        textTransform: 'uppercase',
+        letterSpacing: 2,
     },
     loaderContainer: {
         flex: 1,

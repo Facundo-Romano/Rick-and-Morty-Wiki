@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import Loader from '../components/Loader';
 import CustomHeader from '../components/CustomHeader';
 import { useTheme } from "../context/ThemeContext";
@@ -70,7 +69,7 @@ export default function LocationDetail({route, navigation}) {
                                     Type
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                    <Text style={styles.textType}>
                                         {location.type}
                                     </Text>
                                 </View>
@@ -78,13 +77,13 @@ export default function LocationDetail({route, navigation}) {
                                     Dimension
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                    <Text style={styles.textDimension}>
                                         {location.dimension}
                                     </Text>
                                 </View>
                                 <Text style={[styles.text, 
                                     {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
-                                        Residents:
+                                        Residents
                                 </Text>
                                 <View style={styles.residentsContainer}>
                                         {
@@ -95,7 +94,7 @@ export default function LocationDetail({route, navigation}) {
                                                         onPress={() => navigation.navigate('CharacterDetail', {id: item.id})} 
                                                         key={idx}
                                                         >
-                                                        <Text style={[styles.residents, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                                        <Text style={styles.residents}>
                                                             {item.name}
                                                         </Text>
                                                     </TouchableOpacity>
@@ -145,6 +144,34 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         width: '100%'
     },
+    textType: {
+      textAlign: 'center',
+      fontSize: 18,
+      fontWeight: '700',
+      borderWidth: 1,
+      textTransform: 'uppercase',
+      backgroundColor: 'transparent',
+      letterSpacing: 2,
+      color: constants.color_poopybutthole,
+      borderColor: constants.color_poopybutthole,
+      maxWidth: '100%',
+      paddingHorizontal: 4,
+      marginVertical: 8
+    },
+    textDimension: {
+      textAlign: 'center',
+      fontSize: 18,
+      fontWeight: '700',
+      borderWidth: 1,
+      textTransform: 'uppercase',
+      backgroundColor: 'transparent',
+      letterSpacing: 2,
+      color: constants.color_disease,
+      borderColor: constants.color_disease,
+      maxWidth: '100%',
+      paddingHorizontal: 4,
+      marginVertical: 8
+    },
     text: {
         fontSize: 20,
         fontWeight: '700',
@@ -152,14 +179,22 @@ const styles = StyleSheet.create({
     },
     residentsContainer: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 8
+        borderWidth: 1,
+        width: '100%',
+        backgroundColor: 'transparent',
+        borderColor: constants.color_unknown,
+        padding: 8,
+        marginTop: 8
     },
     residents: {
-        fontSize: 16,
-        fontWeight: '500',
-        margin: 1
+        textAlign: 'center',
+        fontSize: 12,
+        fontWeight: '700',
+        color: constants.color_unknown,
+        textTransform: 'uppercase',
+        letterSpacing: 2,
     },
     loaderContainer: {
         flex: 1,
