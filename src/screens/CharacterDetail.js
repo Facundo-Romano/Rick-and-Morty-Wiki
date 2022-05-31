@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useWindowDimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import Loader from '../components/Loader';
 import CustomHeader from '../components/CustomHeader';
 import { useTheme } from "../context/ThemeContext";
@@ -61,33 +60,56 @@ export default function CharacterDetail({route, navigation}) {
                                 {character.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                    Status:  {character.status}
+                                <Text style={[
+                                    styles.textContainer, {
+                                        color: constants['color_' + character.status.toLowerCase()],
+                                        borderColor: constants['color_' + character.status.toLowerCase()]
+                                    }]}>
+                                    {`Status  ${character.status}`}
+                                </Text>
+                                <Text style={[
+                                    styles.textContainer, {
+                                        color: constants['color_' + character.species.toLowerCase().replace(/\s/g, "")],
+                                        borderColor: constants['color_' + character.species.toLowerCase().replace(/\s/g, "")]
+                                    }]}>
+                                    {`Species  ${character.species}`}
+                                </Text>
+                                <Text style={[
+                                    styles.textContainer, {
+                                        color: constants['color_' + character.gender.toLowerCase()],
+                                        borderColor: constants['color_' + character.gender.toLowerCase()]
+                                    }]}>
+                                    {`Gender  ${character.gender}`}
                                 </Text>
                                 <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                    Species:  {character.species}
-                                </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                    Gender:  {character.gender}
+                                        Origin:
                                 </Text>
                                 <TouchableOpacity onPress={character.origin.url ? () => navigation.navigate('LocationDetail', {id: character.origin.url.match(regex)}) : () => {return}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
-                                        Origin:  {character.origin.name}
+                                    <Text style={[
+                                        styles.textContainer, {
+                                            color: character.origin.name.toLowerCase() === 'unknown' ? constants.color_unknown : constants.color_disease,
+                                            borderColor: character.origin.name.toLowerCase() === 'unknown' ? constants.color_unknown : constants.color_disease
+                                        }]}>
+                                        {character.origin.name}
                                     </Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={character.location.url ? () => navigation.navigate('LocationDetail', {id: character.location.url.match(regex)}) : () => {return}}>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
                                         Last known location:
-                                    </Text>
-                                    <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                </Text>
+                                <TouchableOpacity onPress={character.location.url ? () => navigation.navigate('LocationDetail', {id: character.location.url.match(regex)}) : () => {return}}>
+                                    <Text style={[
+                                        styles.textContainer, {
+                                            color: constants.color_disease,
+                                            borderColor: constants.color_disease
+                                        }]}>
                                         {character.location.name}
                                     </Text>
                                 </TouchableOpacity>
-                                <View style={styles.episodesContainer}>
-                                    <Text style={[styles.text, 
+                                <Text style={[styles.text, 
                                         {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
                                             Episodes:
-                                    </Text>
+                                </Text>
+                                <View style={styles.episodesContainer}>
                                     {
                                         character.episode.map((item, idx) => {
                                             const episode = item.match(regex)
@@ -97,7 +119,7 @@ export default function CharacterDetail({route, navigation}) {
                                                     onPress={() => navigation.navigate('ChapterDetail', {id: episode})} 
                                                     key={idx}
                                                     >
-                                                    <Text style={[styles.episodes, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                                    <Text style={styles.episodes}>
                                                         {episode}
                                                     </Text>
                                                 </TouchableOpacity>
@@ -147,6 +169,19 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         width: '100%'
     },
+    textContainer: {
+      alignSelf: "flex-start",
+      textAlign: 'center',
+      fontSize: 18,
+      fontWeight: '700',
+      borderWidth: 1,
+      maxWidth: '100%',
+      textTransform: 'uppercase',
+      backgroundColor: 'transparent',
+      letterSpacing: 2,
+      paddingHorizontal: 4,
+      marginBottom: 10
+    },
     text: {
         fontSize: 20,
         fontWeight: '700',
@@ -157,12 +192,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         flexWrap:'wrap',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderWidth: 1,
+        maxWidth: '100%',
+        backgroundColor: 'transparent',
+        borderColor: constants.color_unknown
     },
     episodes: {
-        fontSize: 16,
-        fontWeight: '500',
-        margin: 1
+        alignSelf: "flex-start",
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: '700',
+        color: constants.color_unknown,
+        textTransform: 'uppercase',
+        letterSpacing: 2,
     },
     loaderContainer: {
         flex: 1,

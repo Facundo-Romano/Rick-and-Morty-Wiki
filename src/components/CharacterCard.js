@@ -23,7 +23,7 @@ export default function CharacterCard({ character, navigation }) {
       <View style={ styles.container }>
         <Text style={[styles.title, {color: darkTheme ? constants.color_3 : constants.color_1}]}>{ character.name }</Text>
         <Text style={[
-            styles.textStatus, 
+            styles.textContainer, 
             {
               color: constants['color_' + character.status.toLowerCase()],
               borderColor: constants['color_' + character.status.toLowerCase()]
@@ -33,7 +33,7 @@ export default function CharacterCard({ character, navigation }) {
 
         </Text>
         <Text style={[
-          styles.textSpecies, 
+          styles.textContainer, 
           { 
             color: constants['color_' + character.species.toLowerCase().replace(/\s/g, "")],
             borderColor: constants['color_' + character.species.toLowerCase().replace(/\s/g, "")]
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     width: '100%'
   },
-  textStatus: {
+  textContainer: {
     alignSelf: "flex-start",
     textAlign: 'center',
     fontSize: 12,
@@ -76,20 +76,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     backgroundColor: 'transparent',
     letterSpacing: 2,
-    paddingHorizontal: 4,
-    marginVertical: 10
-  },
-  textSpecies: {
-    alignSelf: "flex-start",
-    textAlign: 'center',
-    fontSize: 12,
-    fontWeight: '500',
-    borderWidth: 1,
-    color: constants.color_3,
-    textTransform: 'uppercase',
-    letterSpacing: 2,
     maxWidth: '100%',
     paddingHorizontal: 4,
-    marginBottom: 10
+    marginVertical: 10,
   }
 });

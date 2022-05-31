@@ -5,7 +5,7 @@ import { ThemeProvider } from './src/context/ThemeContext'
 
 export default function App() {
   return (
-      <SafeAreaProvider style={{backgroundColor: constants.color_3}}>
+      <SafeAreaProvider style={{backgroundColor: constants.color_1}}>
         <SafeAreaView style={{flex: 1}}>
           <ThemeProvider>
             <MainNavigation />

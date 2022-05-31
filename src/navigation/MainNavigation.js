@@ -9,6 +9,7 @@ import ChapterDetail from '../screens/ChapterDetail';
 const Stack = createNativeStackNavigator();
 
 export default function MainNavigation() {
+
     return (
         <NavigationContainer>
                 <Stack.Navigator>
