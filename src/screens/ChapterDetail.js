@@ -29,7 +29,7 @@ export default function ChapterDetail({route, navigation}) {
                 charactersIds.push(characterId);
             };
             let [res] = await Promise.all([
-                fetch(`https://rickandmortyapi.com/api/episode/${charactersIds}`),
+                fetch(`https://rickandmortyapi.com/api/character/${charactersIds}`),
                 setChapter(data)
             ]);
             res = await res.json();
