@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      marginHorizontal: 6
+      marginHorizontal: 6,
+      alignSelf: "flex-start"
   },
   line:{
       height: 5,
@@ -102,7 +103,6 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     color: constants.color_poopybutthole,
     borderColor: constants.color_poopybutthole,
-    width: 'max-content',
     maxWidth: '100%',
     paddingHorizontal: 4,
     marginVertical: 8
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     color: constants.color_disease,
     borderColor: constants.color_disease,
-    width: 'max-content',
     maxWidth: '100%',
     paddingHorizontal: 4,
     marginVertical: 8

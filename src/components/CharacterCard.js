@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   textStatus: {
+    alignSelf: "flex-start",
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '500',
@@ -75,11 +76,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     backgroundColor: 'transparent',
     letterSpacing: 2,
-    width: 'max-content',
     paddingHorizontal: 4,
     marginVertical: 10
   },
   textSpecies: {
+    alignSelf: "flex-start",
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '500',
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
     color: constants.color_3,
     textTransform: 'uppercase',
     letterSpacing: 2,
-    width: 'max-content',
     maxWidth: '100%',
     paddingHorizontal: 4,
     marginBottom: 10

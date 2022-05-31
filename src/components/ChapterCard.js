@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginBottom: '3%',
     marginLeft: '6%',
     marginRight: '2%',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 4
   },
   textSeason: {
+    alignSelf: "flex-start",
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '500',
@@ -76,12 +77,12 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     color: constants.color_animal,
     borderColor: constants.color_animal,
-    width: 'max-content',
     maxWidth: '100%',
     paddingHorizontal: 4,
     marginVertical: 8
   },
   textEpisode: {
+    alignSelf: "flex-start",
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '500',
@@ -91,7 +92,6 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     color: constants.color_cronenberg,
     borderColor: constants.color_cronenberg,
-    width: 'max-content',
     maxWidth: '100%',
     paddingHorizontal: 4,
     marginTop: 4,

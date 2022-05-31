@@ -20,23 +20,20 @@ export default function LocationDetail({route, navigation}) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const residentsPromiseArr = [];
+            const residentsIds = [];
             const response = await fetch(`https://rickandmortyapi.com/api/location/${id}`);
             const data =  await response.json();
             for(let i=0; i < data.residents.length; i++) {
                 const residentId = data.residents[i].match(regex);
-                residentsPromiseArr.push(
-                    fetch(`https://rickandmortyapi.com/api/character/${residentId}`)
-                        .then(res => res.json())
-                        .then(res => setResidents(prevState => [...prevState, {name: res.name, id: res.id}]))
-                )
-            }
-            await setResidents([]);
-            await Promise.all([
-                ...residentsPromiseArr,
-                setLocation(data),
-                setLoading(false)
-            ])
+                residentsIds.push(residentId);
+            };
+            let [res] = await Promise.all([
+                fetch(`https://rickandmortyapi.com/api/character/${residentsIds}`),
+                setLocation(data)
+            ]);
+            res = await res.json();
+            await setResidents(res);
+            await setLoading(false);
         };
         
         fetchData()
@@ -51,15 +48,10 @@ export default function LocationDetail({route, navigation}) {
             <View style={styles.header}>
                 <CustomHeader/>
             </View>
-            <View style={styles.goBackContainer}>
-                <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_3 : constants.color_1} />
-                </TouchableOpacity>
-            </View>
             <View style={styles.main}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
+                        <View style={[styles.loaderContainer, {minHeight: window.height, width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
@@ -121,22 +113,8 @@ export default function LocationDetail({route, navigation}) {
 
 const styles = StyleSheet.create({
     header: {
-        minHeight: 60,
+        height: 60,
         width: '100%',
-    },
-    goBackContainer: {
-        minHeight: 30,
-        width: '100%',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        marginTop: 18,
-        margin: 6
-    },
-    goBackBtn: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        marginLeft: 6
     },
     main: {
         flex: 1,
@@ -174,10 +152,9 @@ const styles = StyleSheet.create({
     },
     residentsContainer: {
         flex: 1,
-        flexDirection: 'row', 
-        flexWrap:'wrap',
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        paddingLeft: 8
     },
     residents: {
         fontSize: 16,

@@ -39,11 +39,6 @@ export default function CharacterDetail({route, navigation}) {
             <View style={styles.header}>
                 <CustomHeader/>
             </View>
-            <View style={styles.goBackContainer}>
-                <TouchableOpacity style={styles.goBackBtn} onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={34} color={darkTheme? constants.color_3 : constants.color_1} />
-                </TouchableOpacity>
-            </View>
             <View style={styles.main}>
                     {
                         loading ? 
@@ -122,20 +117,6 @@ const styles = StyleSheet.create({
     header: {
         height: 60,
         width: '100%',
-    },
-    goBackContainer: {
-        minHeight: 30,
-        width: '100%',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        marginTop: 18,
-        margin: 6
-    },
-    goBackBtn: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        marginLeft: 6
     },
     main: {
         flex: 1,
