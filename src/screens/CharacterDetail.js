@@ -48,15 +48,15 @@ export default function CharacterDetail({route, navigation}) {
                         <View 
                             style={[styles.container, 
                                     {
-                                        width: window.width-50,
-                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
+                                        width: window.width,
+                                        backgroundColor: 'transparent'
                                     }
                                 ]}>
                             <Image 
-                                style={[styles.img, {width: window.width*3/4, height: window.width*3/4}]} 
+                                style={{borderRadius: 10, width: window.width*0.9, height: window.width*0.9}} 
                                 source={{uri: character.image}}  
                                 resizeMode="cover" />
-                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                 {character.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
@@ -81,7 +81,7 @@ export default function CharacterDetail({route, navigation}) {
                                     }]}>
                                     {`Gender  ${character.gender}`}
                                 </Text>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                         Origin
                                 </Text>
                                 <TouchableOpacity onPress={character.origin.url ? () => navigation.navigate('LocationDetail', {id: character.origin.url.match(regex)}) : () => {return}}>
@@ -93,7 +93,7 @@ export default function CharacterDetail({route, navigation}) {
                                         {character.origin.name}
                                     </Text>
                                 </TouchableOpacity>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                         Last known location
                                 </Text>
                                 <TouchableOpacity onPress={character.location.url ? () => navigation.navigate('LocationDetail', {id: character.location.url.match(regex)}) : () => {return}}>
@@ -106,7 +106,7 @@ export default function CharacterDetail({route, navigation}) {
                                     </Text>
                                 </TouchableOpacity>
                                 <Text style={[styles.text, 
-                                        {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
+                                        {color: darkTheme? constants.color_3 : constants.color_1, marginRight: 6}]}>
                                             Episodes
                                 </Text>
                                 <View style={styles.episodesContainer}>
@@ -153,9 +153,6 @@ const styles = StyleSheet.create({
       borderRadius: 16,
       margin: 16,
       padding: 12
-    },
-    img: {
-        borderRadius: 25
     },
     title: {
         fontSize: 30,

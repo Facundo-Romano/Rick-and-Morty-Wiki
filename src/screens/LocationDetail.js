@@ -57,15 +57,15 @@ export default function LocationDetail({route, navigation}) {
                         <View 
                             style={[styles.container, 
                                     {
-                                        width: window.width-50, 
-                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
+                                        width: window.width, 
+                                        backgroundColor: 'transparent'
                                     }
                                 ]}>
-                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                 {location.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                     Type
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
@@ -73,7 +73,7 @@ export default function LocationDetail({route, navigation}) {
                                         {location.type}
                                     </Text>
                                 </View>
-                                <Text style={[styles.text, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                                <Text style={[styles.text, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                     Dimension
                                 </Text>
                                 <View style={{width: '100%', alignItems: 'center', marginBottom: 8}}>
@@ -82,7 +82,7 @@ export default function LocationDetail({route, navigation}) {
                                     </Text>
                                 </View>
                                 <Text style={[styles.text, 
-                                    {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
+                                    {color: darkTheme? constants.color_3 : constants.color_1, marginRight: 6}]}>
                                         Residents
                                 </Text>
                                 <View style={styles.residentsContainer}>

@@ -58,15 +58,15 @@ export default function ChapterDetail({route, navigation}) {
                         <View 
                             style={[styles.container, 
                                     {
-                                        width: window.width-50,
-                                        backgroundColor: darkTheme? constants.color_3 : constants.color_1
+                                        width: window.width,
+                                        backgroundColor: 'transparent'
                                     }
                                 ]}>
                             <Image 
-                                style={[styles.img, {width: window.width*3/4, height: window.width*2/4}]} 
+                                style={{width: window.width, height: window.width/5*3}} 
                                 source={requireImages[id]}   
                                 resizeMode="cover" />
-                            <Text style={[styles.title, {color: darkTheme? constants.color_1 : constants.color_3}]}>
+                            <Text style={[styles.title, {color: darkTheme? constants.color_3 : constants.color_1}]}>
                                 {chapter.name}
                             </Text>
                             <View style={styles.descriptionContainer}>
@@ -85,7 +85,7 @@ export default function ChapterDetail({route, navigation}) {
                                    {chapter.air_date}
                                 </Text>
                                 <Text style={[styles.text, 
-                                        {color: darkTheme? constants.color_1 : constants.color_3, marginRight: 6}]}>
+                                        {color: darkTheme? constants.color_3 : constants.color_1, marginRight: 6}]}>
                                            Characters
                                 </Text>
                                 <View style={styles.charactersContainer}>
@@ -131,9 +131,6 @@ const styles = StyleSheet.create({
       borderRadius: 16,
       margin: 16,
       padding: 12
-    },
-    img: {
-        borderRadius: 25
     },
     title: {
         fontSize: 30,

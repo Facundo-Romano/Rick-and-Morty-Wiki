@@ -191,7 +191,7 @@ export default function Characters({navigation}) {
                                     <Text style={styles.error}>{error}</Text> 
                                 </View> 
                                 : 
-                                <View style={[styles.card, {width: window.width, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
+                                <View style={[styles.card, {width: window.width, minHeight: window.height/12*9, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                                 {
                                     data.map((item, idx) => {
                                         return (
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     pagination: {
         flexDirection: 'row',
