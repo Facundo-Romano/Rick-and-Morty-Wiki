@@ -5,7 +5,7 @@ import constants from '../css/constants';
 import { useTheme } from '../context/ThemeContext';
 import requireImages from '../css/requireImages';
 
-export default function ChapterCard({ chapter, id, page, navigation }) {
+export default function ChapterCard({ chapter, navigation }) {
   const darkTheme = useTheme();
   const window = useWindowDimensions();
 
@@ -19,7 +19,7 @@ export default function ChapterCard({ chapter, id, page, navigation }) {
           borderColor: darkTheme ? constants.color_3 : constants.color_1}]}>
       <Image 
         style={{width: window.height/6, minHeight: window.height/6, height: '100%'}} 
-        source={requireImages[id+20*(page-1)]}  
+        source={requireImages[chapter.id]}  
         resizeMode="cover"/>
       <View style={ styles.container }>
         <Text style={[styles.title, {color: darkTheme ? constants.color_3 : constants.color_1}]}>

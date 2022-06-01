@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Animated, Text, TouchableOpacity } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons';
 import Loader from "../components/Loader";
 import { useWindowDimensions } from 'react-native';
 import CustomHeader from '../components/CustomHeader';
