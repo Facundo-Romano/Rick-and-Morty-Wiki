@@ -5,14 +5,14 @@ import constants from '../css/constants';
 import SwitchStyles from './SwitchStyles';
 import { useTheme } from '../context/ThemeContext';
 
-export default function CustomHeader() {
+export default function CustomHeader({ reload }) {
     const window = useWindowDimensions();
     const navigation = useNavigation();
     const darkTheme = useTheme();
 
     return (
         <View style={[styles.container,{height: window.height/12 + 10,backgroundColor: darkTheme? constants.color_1 : constants.color_3}]}>
-            <TouchableOpacity onPress={() => navigation.navigate('Characters')}>
+            <TouchableOpacity onPress={() => {navigation.navigate('Characters'), reload()}}>
                 <Image style={styles.img} source={require('../../assets/custom/portal.png')}  resizeMode="cover"/>
             </TouchableOpacity>
             <View style={[styles.smallContainer, {width: window.width - 91}]}>   
