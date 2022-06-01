@@ -11,8 +11,8 @@ export default function CustomHeader({ reload }) {
     const darkTheme = useTheme();
 
     return (
-        <View style={[styles.container,{height: window.height/12 + 10,backgroundColor: darkTheme? constants.color_1 : constants.color_3}]}>
-            <TouchableOpacity onPress={() => {navigation.navigate('Characters'), reload()}}>
+        <View style={[styles.container,{minHeight: window.height/12 + 10,backgroundColor: darkTheme? constants.color_1 : constants.color_3}]}>
+            <TouchableOpacity onPress={() => {navigation.navigate('Characters'), reload ? reload() : {}}}>
                 <Image style={styles.img} source={require('../../assets/custom/portal.png')}  resizeMode="cover"/>
             </TouchableOpacity>
             <View style={[styles.smallContainer, {width: window.width - 91}]}>   

@@ -100,18 +100,20 @@ export default function Characters({navigation}) {
                 setSearching(true),
                 setSearchValue(input.toLowerCase()),
                 setError(false)
-            ])
+            ]);
+
             res = await res.json();
+
             if(res.results === 'undefined') {
                 setError('No results')
-            }
-            console.log(res.info.pages)
+            };
+
             await Promise.all([
                 setData(res.results),
                 setPages(res.info.pages),
                 setCurrentPage(1),
                 setLoading(false)
-            ])
+            ]);
         } catch (err) {
             Promise.all([
                 setData([]),
@@ -186,7 +188,7 @@ export default function Characters({navigation}) {
                             }
                             {
                                 error ?
-                                <View style={[styles.errorContainer, {width: window.width, height: window.height/12*9, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
+                                <View style={[styles.errorContainer, {width: window.width, minHeight: window.height/12*9, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                                     <Text style={styles.error}>{error}</Text> 
                                 </View> 
                                 : 
@@ -231,6 +233,7 @@ const styles = StyleSheet.create({
     search: {
         alignItems: 'center',
         justifyContent: 'flex-start',
+        minHeight: 50,
         paddingTop: 12
     },
     innerSearchContainer: {
