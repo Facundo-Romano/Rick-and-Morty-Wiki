@@ -111,7 +111,7 @@ export default function CharacterDetail({route, navigation}) {
                                 </Text>
                                 <View style={styles.episodesContainer}>
                                     {
-                                        character.episode.map((item, idx) => {
+                                        character.episode.length > 0 ? character.episode.map((item, idx) => {
                                             const episode = item.match(regex)
                                             return (
                                                 <TouchableOpacity
@@ -124,7 +124,8 @@ export default function CharacterDetail({route, navigation}) {
                                                     </Text>
                                                 </TouchableOpacity>
                                             )
-                                        })
+                                        }) : 
+                                        <></>
                                     }
                                 </View>
                             </View>

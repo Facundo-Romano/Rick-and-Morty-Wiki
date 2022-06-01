@@ -87,7 +87,7 @@ export default function LocationDetail({route, navigation}) {
                                 </Text>
                                 <View style={styles.residentsContainer}>
                                         {
-                                            residents.map((item, idx) => {
+                                            residents.length > 0 ? residents.map((item, idx) => {
                                                 return (
                                                     <TouchableOpacity
                                                         style={{marginHorizontal: 2, marginVertical: 3}}
@@ -99,7 +99,8 @@ export default function LocationDetail({route, navigation}) {
                                                         </Text>
                                                     </TouchableOpacity>
                                                 )
-                                            })
+                                            }) :
+                                            <></>
                                         }
                                 </View>
                             </View>

@@ -90,7 +90,7 @@ export default function ChapterDetail({route, navigation}) {
                                 </Text>
                                 <View style={styles.charactersContainer}>
                                     {
-                                        characters.map((item, idx) => {
+                                        characters.length > 0 ? characters.map((item, idx) => {
                                             return (
                                                 <TouchableOpacity
                                                     style={{marginHorizontal: 2, marginVertical: 3}}
@@ -102,7 +102,8 @@ export default function ChapterDetail({route, navigation}) {
                                                     </Text>
                                                 </TouchableOpacity>
                                             )
-                                        })
+                                        }) :
+                                        <></>
                                     }
                                 </View>
                             </View>
