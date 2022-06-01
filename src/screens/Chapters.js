@@ -156,7 +156,7 @@ export default function Chapters({navigation}) {
                 style={{flex: 1}}>
                     {
                         loading ? 
-                        <View style={[styles.loaderContainer, {height: window.height, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
+                        <View style={[styles.loaderContainer, {minHeight: window.height, backgroundColor: darkTheme ? constants.color_1 : constants.color_3}]}>
                             <Loader/>
                         </View>
                         :
